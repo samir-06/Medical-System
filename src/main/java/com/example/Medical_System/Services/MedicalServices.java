@@ -19,9 +19,19 @@ public class MedicalServices {
     }
     public double getTotalAmount(){
         List<MedicalBillItem> items = medicalItemRepositorys.findAll();
-        return items.stream()
-                .mapToDouble(item -> item.getQuantity() * item.getRate()) // Direct calculation
+        double value = items.stream()
+                .mapToDouble(item -> item.getQuantity() * item.getRate())
                 .sum();
+        double roundValue = Math.round(value * 100.0) / 100.0;
+        return roundValue;
+    }
+    public double getTotalTax(){
+        List<MedicalBillItem> items = medicalItemRepositorys.findAll();
+        double value = items.stream()
+                .mapToDouble(item -> item.getTax())
+                .sum();
+        double roundValue = Math.round(value * 100.0) / 100.0;
+        return roundValue;
     }
     public void deleteItem(long id){
         medicalItemRepositorys.deleteById(id);

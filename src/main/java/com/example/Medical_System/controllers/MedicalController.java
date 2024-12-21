@@ -17,22 +17,32 @@ public class MedicalController {
     public List<MedicalBillItem> getAllItems(){
         return medicalServices.getAllItems();
     }
+
     @PostMapping("/item")
     public MedicalBillItem addItem(@RequestBody MedicalBillItem item){
         return medicalServices.addItem(item);
     }
+
     @GetMapping("/item/total-amount")
     public ResponseEntity<Double> getTotalAmount(){
         double totalamount = medicalServices.getTotalAmount();
         return ResponseEntity.ok(totalamount);
     }
+
     @DeleteMapping("/item/delete/{id}")
     public void deleteItem(@PathVariable long id){
         medicalServices.deleteItem(id);
     }
+
     @PutMapping("/item/update/{id}")
     public ResponseEntity<MedicalBillItem> updateItem(@PathVariable long id, @RequestBody MedicalBillItem updatedItem){
         MedicalBillItem result = medicalServices.updateItem(id,updatedItem);
         return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("item/total-tax")
+    public ResponseEntity<Double> getTotalTax(){
+        double totalTax = medicalServices.getTotalTax();
+        return ResponseEntity.ok(totalTax);
     }
 }

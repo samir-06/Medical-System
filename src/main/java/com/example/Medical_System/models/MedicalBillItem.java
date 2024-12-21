@@ -10,13 +10,15 @@ public class MedicalBillItem {
     private String item;
     private int quantity;
     private double rate;
+    private double tax;
     @Transient
     private double amount;
     public  MedicalBillItem(){}
-    public MedicalBillItem(String item, int quantity, double rate){
+    public MedicalBillItem(String item, int quantity, double rate,double tax){
         this.item = item;
         this.quantity = quantity;
         this.rate = rate;
+        this.tax = tax;
 
     }
 
@@ -52,8 +54,18 @@ public class MedicalBillItem {
         this.rate = rate;
     }
 
+    public double getTax() {
+        return tax;
+    }
+
+    public void setTax(double tax) {
+        this.tax = tax;
+    }
+
     public double getAmount() {
-        return quantity * rate;
+        double value = quantity * rate;
+        double roundValue = Math.round(value * 100.0) / 100.0;
+        return roundValue;
     }
 
     public void setAmount(double amount) {
