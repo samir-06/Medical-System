@@ -7,15 +7,15 @@ public class MedicalBillItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String item;
+    private String title;
     private int quantity;
     private double rate;
     private double tax;
     @Transient
     private double amount;
     public  MedicalBillItem(){}
-    public MedicalBillItem(String item, int quantity, double rate,double tax){
-        this.item = item;
+    public MedicalBillItem(String title, int quantity, double rate,double tax){
+        this.title = title;
         this.quantity = quantity;
         this.rate = rate;
         this.tax = tax;
@@ -30,17 +30,18 @@ public class MedicalBillItem {
         this.id = id;
     }
 
-    public String getItem() {
-        return item;
+    public String getTitle() {
+        return title;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public int getQuantity() {
         return quantity;
     }
+
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;

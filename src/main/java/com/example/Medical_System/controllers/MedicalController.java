@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class MedicalController {
     @Autowired
     private MedicalServices medicalServices;
@@ -18,7 +19,7 @@ public class MedicalController {
         return medicalServices.getAllItems();
     }
 
-    @PostMapping("/item")
+    @PostMapping("/add-item")
     public MedicalBillItem addItem(@RequestBody MedicalBillItem item){
         return medicalServices.addItem(item);
     }
@@ -32,6 +33,11 @@ public class MedicalController {
     @DeleteMapping("/item/delete/{id}")
     public void deleteItem(@PathVariable long id){
         medicalServices.deleteItem(id);
+    }
+
+    @DeleteMapping("/item/delete-all")
+    public void  deleteAllItem(){
+        medicalServices.deleteAllItem();
     }
 
     @PutMapping("/item/update/{id}")

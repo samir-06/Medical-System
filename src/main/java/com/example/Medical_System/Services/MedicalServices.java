@@ -41,9 +41,12 @@ public class MedicalServices {
     }
     public MedicalBillItem updateItem(long id,MedicalBillItem updateItem){
         MedicalBillItem existingItem = getItemById(id);
-        existingItem.setItem(updateItem.getItem());
+        existingItem.setTitle(updateItem.getTitle());
         existingItem.setRate(updateItem.getRate());
         existingItem.setQuantity(updateItem.getQuantity());
         return medicalItemRepositorys.save(existingItem);
+    }
+    public void deleteAllItem(){
+        medicalItemRepositorys.deleteAll();
     }
 }
